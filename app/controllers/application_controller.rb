@@ -3,7 +3,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
   end
-  
+
   get '/recipes/new' do
     erb :new
   end
@@ -18,7 +18,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/recipes/:id/edit' do
-    
+    @recipe = Recipe.find_by_id(params[:id])
+    erb :edit
+
   end
 
   get '/' do
