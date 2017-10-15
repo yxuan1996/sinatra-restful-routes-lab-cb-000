@@ -34,11 +34,17 @@ class ApplicationController < Sinatra::Base
   post '/recipes' do
     @recipe = Recipe.create(params)
     redirect to '/recipes/#{@recipe.id}'
-    
+
   end
 
   get '/' do
     erb :index
+  end
+
+  delete '/recipe/:id/delete' do
+    @recipe.find_by_id(params[:id])
+    @recipe.delete
+    redirect to '/recipes'
   end
 
 end
